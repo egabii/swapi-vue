@@ -43,7 +43,7 @@ const onClickPage = (pageNumber: number) => {
 };
 
 const searchPlanetName = async () => {
-	if (inputSearch.value === '') {
+	if (inputSearch.value !== '') {
 		planets.value = await fetchPlanets(1, inputSearch.value);
 		currentPage.value = 1;
 	}
