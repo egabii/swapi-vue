@@ -32,7 +32,6 @@ watch(selectedSorting, (newSelectedSorting) => {
 	planets.value.results = _sortBy(planets.value.results, [newSelectedSorting]);
 });
 
-
 const onNextPage = () => {
 	isLoading.value = true;
 	currentPage.value = Math.ceil(planets.value.total / planets.value.pageSize);
@@ -94,8 +93,10 @@ const resetSearch = async () => {
 				</section>
 				<span v-if="isLoading">Loading...</span>
 				<ul v-else-if="planets.results.length > 0">
-					<li v-for="planet in planets?.results" :key="planet.name">
-						{{ `${planet.name} / ${ planet.population }` }}
+					<li v-for="planet in planets?.results" :key="planet?.name">
+						<div class="card">
+							{{ `${planet?.name} / ${planet?.population === Infinity ? 'unknown' : planet?.population}` }}
+						</div>
 					</li>
 				</ul>
 				<section v-else>No planets were found</section>
