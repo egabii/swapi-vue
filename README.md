@@ -8,6 +8,8 @@ This project is a Vue 3 single page application, which retrieves data from [SWAP
 - [Vue 3](https://vuejs.org/)
 - [Typescript](https://www.typescriptlang.org/)
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [Layoutit](https://grid.layoutit.com/) it lets you build a layout with cssgrid. it is useful if you have to build a layout quickly
+- API: [SWAPI/planets](https://swapi.dev/api/planets)
 
 ## Vite + Vue 3
 > I keep this section due it belongs to Vite + Vue 3 template and we might need it for future reference
