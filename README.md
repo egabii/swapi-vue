@@ -12,6 +12,7 @@ This project is a Vue 3 single page application, which retrieves data from [SWAP
 - API: [SWAPI/planets](https://swapi.dev/api/planets)
 
 ## Vite + Vue 3
+
 > I keep this section due it belongs to Vite + Vue 3 template and we might need it for future reference
 
 ### Vite template
