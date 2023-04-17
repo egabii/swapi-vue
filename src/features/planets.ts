@@ -13,14 +13,16 @@ export const PlanetSchemaDefaultValues: PlanetSchema = {
 };
 
 interface ISwapiPlanet {
-	name: string
+	name: string;
 }
+
+const SUCCESS_STATUS = 200;
 
 export default async function fetchPlanets(page = 1, search = ''): Promise<PlanetSchema> {
 	try {
 		const searchName = search !== '' ? `&search=${search}` : '';
 		const response = await fetch(`https://swapi.dev/api/planets?page=${page}${searchName}`);
-		if (response.ok && response.status === 200) {
+		if (response.ok && response.status === SUCCESS_STATUS) {
 			const json = await response.json();
 			return {
 				pageSize: json.results.length,

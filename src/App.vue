@@ -24,8 +24,6 @@ watch(
 	{ immediate: true }
 );
 
-watch(inputSearch, () => {}, { immediate: true });
-
 const onNextPage = () => {
 	isLoading.value = true;
 	currentPage.value = Math.ceil(planets.value.total / planets.value.pageSize);
@@ -59,7 +57,14 @@ const resetSearch = async () => {
 
 <template>
 	<section class="container">
-		<header class="header">HEADER</header>
+		<header class="header">
+			<section class="header-content">
+				<h1>SWAPI + VUE3</h1>
+				<div class="github-section">
+					<a href="https://github.com/egabii/swapi-vue" target="_blank">Github</a>
+				</div>
+			</section>
+		</header>
 		<main class="content">
 			<span v-if="isInitialLoading">Loading...</span>
 			<section v-else class="planets-container">
@@ -75,12 +80,12 @@ const resetSearch = async () => {
 					</li>
 				</ul>
 				<section v-else>No planets were found</section>
-				<section class="pagination-buttons">
-					<button :disabled="prevButtonDisable" @click="onPrevPage">First</button>
-					<div class="pages-box">
-						<a v-for="pageNumber in pagesClickables()" :key="pageNumber" @click="($event) => onClickPage(pageNumber)">{{ pageNumber }}</a>
+				<section class="pagination">
+					<button class="pagination-button" :disabled="prevButtonDisable" @click="onPrevPage">First</button>
+					<div class="page-numbers">
+						<a v-for="pageNumber in pagesClickables()" :key="pageNumber" @click="() => onClickPage(pageNumber)">{{ pageNumber }}</a>
 					</div>
-					<button @click="onNextPage">Last</button>
+					<button class="pagination-button" @click="onNextPage">Last</button>
 				</section>
 			</section>
 		</main>
