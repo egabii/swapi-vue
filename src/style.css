@@ -1,9 +1,12 @@
+
 :root {
+	--black-color: rgb(29 27 27 / 87%);
+	--white-color: #fffafa;
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
 	color-scheme: light dark;
-	color: rgb(29 27 27 / 87%);
+	color: var(--black-color);
 	background-color: #ffffff;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -21,21 +24,46 @@ a:hover {
 	color: #535bf2;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	line-height: 1.1;
 }
 
-button {
-	border-radius: 8px;
+button, input {
+	border-radius: 2px;
 	border: 1px solid transparent;
 	padding: 0.6em 1.2em;
 	font-size: 1em;
 	font-weight: 500;
 	font-family: inherit;
-	background-color: #1a1a1a;
 	cursor: pointer;
 	transition: border-color 0.25s;
 }
+
+input, select {
+	border-radius: 2px;
+	border: 1px solid var(--black-color);
+	color: var(--black-color);
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	background-color: var(--white-color);
+}
+
+button.btn-primary {
+	background-color: var(--black-color);
+	border: 1px solid transparent;
+}
+
+button.btn-secondary {
+	background-color: #fffafa;
+	border: 1px solid var(--black-color);
+	color: var(--black-color);
+}
+
 button:hover {
 	border-color: #646cff;
 }
@@ -44,27 +72,10 @@ button:focus-visible {
 	outline: 4px auto -webkit-focus-ring-color;
 }
 
-.card {
-	padding: 2em;
-}
-
 #app {
 	max-width: 1280px;
 	width: 100%;
 	margin: 0 auto;
-}
-
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-	a:hover {
-		color: #747bff;
-	}
-	button {
-		background-color: #f9f9f9;
-	}
 }
 
 .container {
@@ -123,4 +134,19 @@ button:focus-visible {
 	justify-content: center;
 	align-items: center;
 	gap: 20px;
+}
+
+.page-numbers .number {
+	cursor: pointer;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.toolbar {
+	display: flex;
+	justify-content: space-between;
 }

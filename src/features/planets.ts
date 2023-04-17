@@ -12,8 +12,9 @@ export const PlanetSchemaDefaultValues: PlanetSchema = {
 	currentPage: 1,
 };
 
-interface ISwapiPlanet {
+export interface ISwapiPlanet {
 	name: string;
+	population: string;
 }
 
 const SUCCESS_STATUS = 200;
@@ -27,7 +28,10 @@ export default async function fetchPlanets(page = 1, search = ''): Promise<Plane
 			return {
 				pageSize: json.results.length,
 				total: json.count,
-				results: json.results.map((result: ISwapiPlanet) => result.name),
+				results: json.results.map((result: ISwapiPlanet) => ({
+					name: result.name,
+					population: isNaN(+result.population) ? 'unknown' : +result.population,
+				})),
 				currentPage: page,
 			};
 		} else {
