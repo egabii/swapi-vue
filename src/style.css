@@ -93,7 +93,7 @@ button:focus-visible {
 .container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 0.3fr 1.7fr 1.7fr 0.3fr;
+	grid-template-rows: 0.2fr 1.7fr 1.7fr 0.2fr;
 	gap: 0px 0px;
 	grid-auto-flow: row;
 	grid-template-areas:
@@ -185,6 +185,14 @@ button:focus-visible {
 }
 
 .card {
-	padding: 8px;
+	padding: 8px 20px;
 	background-color: #e2e2ee;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.card-aside {
+	border-left: 1px solid;
+	padding: 10px 20px;
 }

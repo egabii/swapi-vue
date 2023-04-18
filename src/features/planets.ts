@@ -1,5 +1,12 @@
 export interface ISwapiPlanet {
 	name: string;
+	rotation_period: number | string;
+	orbital_period: number | string;
+	diameter: number | string;
+	climate: string;
+	gravity: string;
+	terrain: string;
+	surface_water: number | string;
 	population: string | number;
 }
 
@@ -29,6 +36,7 @@ export default async function fetchPlanets(page = 1, search = ''): Promise<Plane
 				pageSize: json.results.length,
 				total: json.count,
 				results: json.results.map((result: ISwapiPlanet) => ({
+					...result,
 					name: result.name,
 					population: result.population === 'unknown' ? Infinity : +result.population, // returns infinity when the population is unknown
 				})),

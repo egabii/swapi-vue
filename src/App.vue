@@ -14,7 +14,10 @@ const selectedSorting = ref('name');
 
 onMounted(async () => {
 	const nonSortingPlanets = await fetchPlanets();
-	planets.value.results = _sortBy(nonSortingPlanets.results, [selectedSorting.value]);
+	planets.value = {
+		...nonSortingPlanets,
+		results: _sortBy(nonSortingPlanets.results, [selectedSorting.value])
+	};
 	isInitialLoading.value = false;
 });
 
@@ -23,7 +26,11 @@ watch(
 	async (newpage) => {
 		isLoading.value = true;
 		prevButtonDisable.value = newpage === 1;
-		planets.value = await fetchPlanets(newpage);
+		const nonSortingPlanets = await fetchPlanets(newpage);
+		planets.value = {
+			...nonSortingPlanets,
+			results: _sortBy(nonSortingPlanets.results, [selectedSorting.value])
+		};
 		isLoading.value = false;
 	},
 	{ immediate: true }
@@ -43,7 +50,9 @@ const onPrevPage = () => {
 	currentPage.value = 1;
 };
 
-const pagesClickables = () => Array.from({ length: Math.ceil(planets.value.total / planets.value.pageSize) }, (_, i) => i + 1);
+const pagesClickables = () => {
+	return Array.from({ length: Math.ceil(planets.value.total / planets.value.pageSize) }, (_, i) => i + 1)
+};
 
 const onClickPage = (pageNumber: number) => {
 	currentPage.value = pageNumber;
@@ -95,7 +104,17 @@ const resetSearch = async () => {
 				<span v-if="isLoading">Loading...</span>
 				<div class="card-container" v-else-if="planets.results.length > 0">
 					<div class="card" v-for="planet in planets?.results" :key="planet?.name">
-						{{ `${planet?.name} / ${planet?.population === Infinity ? 'unknown' : planet?.population}` }}
+						<div class="card-content">
+							<h3>{{ planet?.name }}</h3>
+							<p>Rotation:{{ planet.rotation_period }} hours, Orbital:{{ planet.orbital_period }} days, Diameter: {{ planet.diameter }} Km</p>
+							<p>Gravity: {{ planet.gravity }}</p>
+							<p>Terrain: {{ planet.terrain }}</p>
+							<p>Surface water: {{ planet.surface_water }}</p>
+						</div>
+						<div class="card-aside">
+							<p>{{ planet?.population === Infinity ? 'unknown' : planet?.population }}</p>
+							<p>Inhabitants</p>
+						</div>
 					</div>
 				</div>
 				<section v-else>No planets were found</section>
