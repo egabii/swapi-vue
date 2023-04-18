@@ -1,3 +1,6 @@
+body {
+	margin: 0;
+}
 
 :root {
 	--black-color: rgb(29 27 27 / 87%);
@@ -13,6 +16,14 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style: none;
 }
 
 a {
@@ -73,11 +84,12 @@ button:focus-visible {
 }
 
 #app {
-	max-width: 1280px;
+	max-width: 1980px;
 	width: 100%;
 	margin: 0 auto;
 }
 
+/* layout style */
 .container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -89,11 +101,11 @@ button:focus-visible {
 		'content content content'
 		'content content content'
 		'footer footer footer';
-	height: 100vh;
 }
 
 .header {
 	grid-area: header;
+	padding: 15px 20px;
 }
 
 .header .header-content {
@@ -104,19 +116,24 @@ button:focus-visible {
 
 .content {
 	grid-area: content;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	padding: 0 20px;
 }
 
 .footer {
 	grid-area: footer;
+	padding: 25px 20px;
 }
 
+/* planet style */
 .planets-container {
 	min-width: 640px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
+/* pagination */
 .pagination {
 	display: flex;
 	justify-content: space-between;
@@ -138,15 +155,36 @@ button:focus-visible {
 
 .page-numbers .number {
 	cursor: pointer;
+	padding: 8px;
 }
 
-.form-container {
+.page-numbers .number:hover, .page-numbers .number.active {
+	text-decoration: underline;
+}
+
+/* toolbar */
+.toolbar {
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+}
+
+.toolbar .form-container {
 	display: flex;
 	flex-direction: row;
 	gap: 20px;
 }
 
-.toolbar {
+/* card */
+.card-container {
+	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	gap: 16px;
+	margin: 16px 0;
+}
+
+.card {
+	padding: 8px;
+	background-color: #e2e2ee;
 }

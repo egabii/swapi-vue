@@ -2,6 +2,7 @@
 import { ref, onMounted, watch } from 'vue';
 import fetchPlanets, { PlanetSchema, PlanetSchemaDefaultValues } from './features/planets';
 import { sortBy as _sortBy } from 'lodash';
+
 const planets = ref<PlanetSchema>(PlanetSchemaDefaultValues);
 const currentPage = ref(1);
 const isLoading = ref(true);
@@ -82,7 +83,7 @@ const resetSearch = async () => {
 				<section class="toolbar">
 					<section class="filter-bar">
 						<select v-model="selectedSorting">
-							<option v-for="option in sortingSelect" :key="option">{{ option }}</option>
+							<option v-for="option in sortingSelect" :key="option" :value="option">{{ `${option}(asc)` }}</option>
 						</select>
 					</section>
 					<form class="form-container" @submit.prevent="searchPlanetName">
@@ -92,23 +93,23 @@ const resetSearch = async () => {
 					</form>
 				</section>
 				<span v-if="isLoading">Loading...</span>
-				<ul v-else-if="planets.results.length > 0">
-					<li v-for="planet in planets?.results" :key="planet?.name">
-						<div class="card">
-							{{ `${planet?.name} / ${planet?.population === Infinity ? 'unknown' : planet?.population}` }}
-						</div>
-					</li>
-				</ul>
+				<div class="card-container" v-else-if="planets.results.length > 0">
+					<div class="card" v-for="planet in planets?.results" :key="planet?.name">
+						{{ `${planet?.name} / ${planet?.population === Infinity ? 'unknown' : planet?.population}` }}
+					</div>
+				</div>
 				<section v-else>No planets were found</section>
 				<section class="pagination">
 					<button class="pagination-button btn-primary" :disabled="prevButtonDisable" @click="onPrevPage">First</button>
 					<div class="page-numbers">
-						<a class="number" v-for="pageNumber in pagesClickables()" :key="pageNumber" @click="() => onClickPage(pageNumber)">{{ pageNumber }}</a>
+						<a class="number" :class="{ active: currentPage === pageNumber }" v-for="pageNumber in pagesClickables()" :key="pageNumber" @click="() => onClickPage(pageNumber)">{{
+							pageNumber
+						}}</a>
 					</div>
 					<button class="pagination-button btn-primary" @click="onNextPage">Last</button>
 				</section>
 			</section>
 		</main>
-		<footer class="footer">Swapi+Vue</footer>
+		<footer class="footer">Swapi+Vue3</footer>
 	</section>
 </template>
