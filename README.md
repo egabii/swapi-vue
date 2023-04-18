@@ -10,6 +10,7 @@ This project is a Vue 3 single page application, which retrieves data from [SWAP
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 - [Layoutit](https://grid.layoutit.com/) it lets you build a layout with cssgrid. it is useful if you have to build a layout quickly
 - API: [SWAPI/planets](https://swapi.dev/api/planets)
+- [excalidraw](https://excalidraw.com/) - it is a simple and useful tool when you need to draw some wireframes (it is not like figma at all) or the flow of your app.
 
 ## Vite + Vue 3
 
